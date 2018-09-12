@@ -1,0 +1,6 @@
+Volem un sistema de notificació desacoblat que permeti mostrar notificacions a l'usuari. Haurà de:
+1)Permetre mostrar un missatge personalitzat.
+    1.1)Permetre localització
+2)Permetre definir el temps que la notificació estarà visible
+3)Permetre, opcionalment, que l'usuari el tanqui
+4)Permetre que el contingut sigui un component

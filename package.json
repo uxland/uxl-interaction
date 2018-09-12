@@ -1,0 +1,81 @@
+{
+  "name": "@uxland/uxl-interaction",
+  "version": "0.0.0-development",
+  "description": "UXLand - Interaction",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
+  "keywords": [
+    "polymer",
+    "web components"
+  ],
+  "homepage": "https://github.com/uxland/uxl-interaction#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uxland/uxl-interaction.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uxland/uxl-interaction/issues"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@types/chai": "^4.1.4",
+    "@types/lodash-es": "^4.17.0",
+    "@types/mocha": "^5.2.2",
+    "@types/polymer": "^1.2.4",
+    "@types/redux-mock-store": "^1.0.0",
+    "@types/sinon": "^5.0.1",
+    "@webcomponents/custom-elements": "^1.2.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "chai": "^4.1.2",
+    "dts-generator": "^2.1.0",
+    "esm": "^3.0.72",
+    "gulp": "^3.9.1",
+    "gulp-bump": "^3.1.1",
+    "gulp-run": "^1.7.1",
+    "jsdom": "^11.12.0",
+    "lodash": "3.10.1",
+    "mocha": "^5.2.0",
+    "mutation-observer": "^1.0.3",
+    "nsp": "^2.6.3",
+    "raf": "^3.4.0",
+    "redux-mock-store": "git+https://github.com/dpinart/redux-mock-store.git",
+    "require-dir": "^0.3.2",
+    "rimraf": "^2.6.2",
+    "run-sequence": "^2.1.0",
+    "sinon": "^6.0.0",
+    "typescript": "^2.9.2",
+    "wct-browser-legacy": "^1.0.0"
+  },
+  "dependencies": {
+    "@material/mwc-icon": "^0.1.2",
+    "@polymer/iron-icons": "3.0.0-pre.21",
+    "@polymer/lit-element": "^0.5.2",
+    "@polymer/paper-button": "^3.0.0-pre.21",
+    "@polymer/paper-dialog": "^3.0.0-pre.21",
+    "@polymer/paper-icon-button": "3.0.0-pre.21",
+    "@polymer/paper-toast": "^3.0.0-pre.21",
+    "@uxland/uxl-polymer2-ts": "^1.0.6",
+    "@uxland/uxl-utilities": "^1.1.4",
+    "@vaadin/vaadin-button": "^2.1.0-beta2",
+    "tslib": "^1.9.3"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json || echo 'Skip common compile errors' ",
+    "test:ui:watch": "nodemon --watch test --watch src -x \"polymer test --config-file wct.config.json\"",
+    "test:ui": "polymer test --config-file wct.config.json",
+    "test:unit": "npm run build && node --experimental-modules node_modules/mocha/bin/_mocha -r esm --ui tdd --reporter mochawesome test/unit",
+    "dist": "tsc --p gulp/tsconfig-dist.json || echo 'Skip common compile errors' && gulp generate-d-ts",
+    "tdd": "node --experimental-modules node_modules/mocha/bin/_mocha --watch -r esm --ui tdd --reporter mochawesome test/unit",
+    "prepublishOnly": "if [ -d dist ]; then ncp dist/. . && rimraf dist/; fi",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
+  },
+  "license": "Apache-2.0",
+  "directories": {
+    "test": "test"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

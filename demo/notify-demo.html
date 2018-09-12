@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    button{
+        margin: 12px;
+        background-color: #2196F3;
+        color: #fff;
+        padding: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover{background-color: #1565C0;}
+    #button3{background-color: #F44336;}
+    #button3:hover{background-color: #C62828;}
+    #button4{background-color: #FF9800;}
+    #button4:hover{background-color: #EF6C00;}
+    #button10{background-color: #4CAF50;}
+    #button4:hover{background-color: #2E7D32;}
+</style>
+<body>
+    <button id="button">Fit bottom Snackbar</button>
+    <button id="button2">Normal Snackbar</button>
+    <button id="button3">danger Snackbar</button>
+    <button id="button4">warning Snackbar</button>
+    <button id="button5">info Snackbar</button>
+    <button id="button10">success Snackbar</button>
+    <button id="button6">without close button Snackbar</button>
+    <button id="button7">Custom colors Snackbar</button>
+    <button id="button8">Top position Snackbar</button>
+    <button id="button9">Center position Snackbar</button>
+    <script type="module">
+        import {notify} from '../src/notify';
+        function show(){
+            let options = {message: 'Snackbar with "wide" classifier', showCloseButton: true, classifiers: ['fit-bottom'], delay: 10000};
+            notify(options);
+        }
+        function show2(){
+            let options = {message: 'Normal Snackbar', showCloseButton: true, delay: 10000};
+            notify(options);
+        }
+        function show3(){
+            let options = {message: 'danger Snackbar', showCloseButton: true, type: "danger", delay: 10000};
+            notify(options);
+        }
+        function show4(){
+            let options = {message: 'warning Snackbar', showCloseButton: true, type: "warning", delay: 10000};
+            notify(options);
+        }
+        function show5(){
+            let options = {message: 'info Snackbar', showCloseButton: true, type: "info", delay: 10000};
+            notify(options);
+        }
+        function show6(){
+            let options = {message: 'without close button Snackbar', type: "info", delay: 10000};
+            notify(options);
+        }
+        function show7(){
+            let options = {message: 'Custom colors Snackbar', showCloseButton: true, styles: {backgroundColor: '#283593', textColor: 'yellow', iconColor: 'yellow'}, delay: 10000};
+            notify(options);
+        }
+        function show8(){
+            let options = {message: 'A top snackbar', showCloseButton: true, position: 'top', type: "info", delay: 10000};
+            notify(options);
+        }
+        function show9(){
+            let options = {message: 'A center Snackbar', showCloseButton: true, position: 'center', type: "danger", delay: 10000};
+            notify(options);
+        }
+
+        function show10(){
+            let options = {message: 'A success Snackbar', showCloseButton: true, type: 'success', delay: 10000};
+            notify(options);
+        }
+        document.querySelector('#button').addEventListener('click', show);
+        document.querySelector('#button2').addEventListener('click', show2);
+        document.querySelector('#button3').addEventListener('click', show3);
+        document.querySelector('#button4').addEventListener('click', show4);
+        document.querySelector('#button5').addEventListener('click', show5);
+        document.querySelector('#button6').addEventListener('click', show6);
+        document.querySelector('#button7').addEventListener('click', show7);
+        document.querySelector('#button8').addEventListener('click', show8);
+        document.querySelector('#button9').addEventListener('click', show9);
+        document.querySelector('#button10').addEventListener('click', show10);
+    </script>
+</body>
+
+</html>

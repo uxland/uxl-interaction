@@ -1,0 +1,17 @@
+Volem un sistema desacoblat per a poder interactuar amb l'usuari demanant-li confirmacions. La resposta ha der una Promise<boolean>
+1)S'ha de poder passar un títol i un missatge i opcionalment les etiquetes dels botons de cancel·lar i acceptar.
+    1.1) S'han de poder localitzar aquests textos
+    1.2) S'han de poder amagar els botons individualment
+    1.3) Opcionalment, ha de sortir un botó de tancar a la capçalera
+    1.4) La icona del botó de tancar de la capçalera ha de ser configurable i també l'alineació (esquerra-defecte- o dreta)
+2) S'ha de permetre mostrar un component com a contingut
+    2.1) S'han de passar les opcions al contingut
+3) S'ha de proporcionar una classe base pels components custom
+    3.1)Ha de poder tancar el diàleg passant el resultat (boolean)
+    3.2)Ha de poder interceptar els mètodes de tancament (acceptar)
+    3.3) Ha de proporcionar un mètode `onAccept` on cada component pugui implementar la seva lògica de validació
+4) S'ha de poder triar si és modal o no
+5) Ha de poder ser full-screen
+6) El diàleg sempre sortirà centrat a la pantalla
+7) S'ha de poder seleccionar les animacions d'obertura i tancament
+8) S'han de poder registar opcions per defecte a partir d'un identificador

@@ -1,0 +1,10 @@
+node_modules/
+.idea/
+dist/
+src/**/*.js
+src/**/*.js.map
+!test/unit/setup.js
+test/**/*.js
+test/**/*.js.map
+
+
