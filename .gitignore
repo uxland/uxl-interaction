@@ -1,3 +1,4 @@
+build/
 node_modules/
 .idea/
 dist/
@@ -6,5 +7,6 @@ src/**/*.js.map
 !test/unit/setup.js
 test/**/*.js
 test/**/*.js.map
-
+confirmation-specs.txt
+notify-specs.txt
 
