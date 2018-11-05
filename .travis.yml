@@ -1,7 +1,7 @@
 language: node_js
 cache:
   directories:
-    - ~/.npm
+  - ~/.npm
 dist: trusty
 sudo: required
 notifications:
@@ -10,19 +10,16 @@ node_js: 10
 addons:
   chrome: stable
 before_script:
-  - npm i -g polymer-cli
+- npm i -g polymer-cli
 script:
-  - npm run build
-  - xvfb-run npm run test:ui
-  # - npm run test:unit
+- npm run build
 after_success:
-  - gulp dist
+- gulp dist
 branches:
   except:
-    - /^v\d+\.\d+\.\d+$/
+  - /^v\d+\.\d+\.\d+$/
 deploy:
   provider: script
   skip_cleanup: true
   script:
-    - npx semantic-release
-
+  - npx semantic-release
