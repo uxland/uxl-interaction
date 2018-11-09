@@ -9,4 +9,5 @@ test/**/*.js
 test/**/*.js.map
 confirmation-specs.txt
 notify-specs.txt
+package-lock.json
 
