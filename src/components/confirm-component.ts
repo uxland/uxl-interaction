@@ -5,20 +5,20 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-dialog/paper-dialog';
 import '@polymer/paper-button/paper-button';
 import '@polymer/paper-icon-button/paper-icon-button';
-import {style as styleTemplate} from './confirm-component-styles.js';
+import CSS from './confirm-component-styles.js';
 import {IConfirmMixin} from "../confirm-mixin";
 
 const renderCloseButton = (show: boolean) => show ? html`
                         <paper-icon-button
                             id="close-btn"     
                             icon="icons:close">  
-                        </paper-icon-button>` : undefined;
+                        </paper-icon-button>` : ``;
 
 const renderActions = (options: ConfirmOptions) => !options.withoutActions ? html `
                         <div id="actions">
                             <paper-button id="cancel-btn">${options.cancelLabel}</paper-button>
                             <paper-button id="accept-btn" autofocus>${options.acceptLabel}</paper-button>
-                        </div>` : undefined;
+                        </div>` : ``;
 const renderMessage = (options: ConfirmOptions) => html`<div id="message">${options.message || ''}</div>` ;
 const renderCustomContent = (options: ConfirmOptions, props: ConfirmComponent) => {
     if(options.htmlTag){
@@ -31,17 +31,17 @@ const renderCustomContent = (options: ConfirmOptions, props: ConfirmComponent) =
 };
 const renderContent = (options: ConfirmOptions, props: ConfirmComponent) => options.message ? renderMessage(options) : renderCustomContent(options, props);
 
-const renderDialog = (options: ConfirmOptions, props: ConfirmComponent) => html`
-    <paper-dialog id="dialog" type$="${options.type}" fullScreen$="${options.fullScreen}" modal$="${options.modal}">
+const renderDialog = (props: ConfirmComponent) => html`
+    <paper-dialog id="dialog" type="${props.options.type}" ?fullScreen="${props.options.fullScreen}" ?modal="${props.options.modal}">
     <div id="header">
-        <h2>${options.title || ''}</h2>
-        ${renderCloseButton(options.showCloseButton)}
+        <h2>${props.options.title || ''}</h2>
+        ${renderCloseButton(props.options.showCloseButton)}
     </div>
     <div id="content">
         <paper-dialog-scrollable>
-            ${renderContent(options, props)} 
+            ${renderContent(props.options, props)} 
         </paper-dialog-scrollable>
-        ${renderActions(options)}
+        ${renderActions(props.options)}
     </div>
 </paper-dialog>
 `;
@@ -50,6 +50,24 @@ const getOptionsStyles = (options: ConfirmOptions) => options && options.styles 
 
 @customElement('confirm-component')
 export class ConfirmComponent extends LitElement {
+
+    render(){
+        return html`${CSS}${renderDialog(this)}`;
+    }
+
+    updated(changedProperties){
+        let styles : ConfirmStyles= getOptionsStyles(this.options ? this.options: undefined);
+        styles.textColor && this.dialog && this.dialog.style.setProperty('--paper-dialog-color', styles.textColor);
+        styles.backgroundColor && this.dialog && this.dialog.style.setProperty('--paper-dialog-background-color', styles.backgroundColor);
+        styles.closeIconColor && this.closeButton && this.closeButton.style.setProperty('--iron-icon-fill-color', styles.closeIconColor);
+        styles.acceptColor && this.acceptButton && this.acceptButton.style.setProperty('color', styles.acceptColor);
+        styles.actionsBackgroundColor && this.actionsContainer && this.actionsContainer.style.setProperty('background-color', styles.actionsBackgroundColor);
+        styles.headerBackgroundColor && this.header && this.header.style.setProperty('background-color', styles.headerBackgroundColor);
+        styles.width && this.dialog && this.dialog.style.setProperty('width', styles.width);
+        styles.height && this.dialog && this.dialog.style.setProperty('height', styles.height);
+        styles.height && this.content && this.content.style.setProperty('height', 'calc(100% - 64px)');
+    }
+
     @property({reflectToAttribute: true, type: Object})
     options: ConfirmOptions;
 
@@ -114,28 +132,7 @@ export class ConfirmComponent extends LitElement {
     @item('content')
     content: HTMLElement;
 
-    _render(props: ConfirmComponent) : any{
-        let options = props.options || {};
-        return html`
-            ${styleTemplate}
-            ${renderDialog(options, this)}
-        `;
-    }
-
     show(){
         this.dialog.open();
-    }
-
-    _didRender(props: ConfirmComponent, changedProps: ConfirmComponent, prevProps: ConfirmComponent){
-        let styles : ConfirmStyles= getOptionsStyles(changedProps ? changedProps.options: undefined);
-        styles.textColor && this.dialog && this.dialog.style.setProperty('--paper-dialog-color', styles.textColor);
-        styles.backgroundColor && this.dialog && this.dialog.style.setProperty('--paper-dialog-background-color', styles.backgroundColor);
-        styles.closeIconColor && this.closeButton && this.closeButton.style.setProperty('--iron-icon-fill-color', styles.closeIconColor);
-        styles.acceptColor && this.acceptButton && this.acceptButton.style.setProperty('color', styles.acceptColor);
-        styles.actionsBackgroundColor && this.actionsContainer && this.actionsContainer.style.setProperty('background-color', styles.actionsBackgroundColor);
-        styles.headerBackgroundColor && this.header && this.header.style.setProperty('background-color', styles.headerBackgroundColor);
-        styles.width && this.dialog && this.dialog.style.setProperty('width', styles.width);
-        styles.height && this.dialog && this.dialog.style.setProperty('height', styles.height);
-        styles.height && this.content && this.content.style.setProperty('height', 'calc(100% - 64px)');
     }
 }

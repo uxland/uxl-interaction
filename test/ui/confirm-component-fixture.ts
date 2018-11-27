@@ -12,8 +12,8 @@ suite('Given an instance of ConfirmComponent', () => {
         confirmComponent = fixture(fixtureName);
         console.log(confirmComponent);
         dialog = confirmComponent.shadowRoot.querySelector('paper-dialog');
+        await confirmComponent.updateComplete;
         confirmComponent.show();
-        await confirmComponent.renderComplete;
     });
     test('should contain a paper dialog', async () => {
         assert.exists(dialog);
@@ -30,20 +30,20 @@ suite('Given an instance of ConfirmComponent', () => {
             test('should set paper-dialog text to options.message', async () => {
                 const message = 'Hello, Im a custom message!!!';
                 confirmComponent.options = {message: message};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 assert.equal(dialog.querySelector('#message').innerText, message);
             });
         });
         suite('and `showCloseButton` is set', () =>{
             test('dialog should show a close button', async () =>{
                 confirmComponent.options = {message: 'dialog with close button', showCloseButton: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 assert.exists(dialog.querySelector('#close-btn'));
             });
 
             test('should close dialog if click on close btn', async() =>{
                 confirmComponent.options={message: 'close dialog at click close-button', showCloseButton: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 let stub = sinon.stub(dialog, 'close');
                 dialog.querySelector('#close-btn').click();
                 assert.isTrue(stub.calledOnce);
@@ -57,25 +57,25 @@ suite('Given an instance of ConfirmComponent', () => {
                 const typeSuccess = "success";
 
                 confirmComponent.options = {message: 'type danger dialog', type: typeDanger, showCloseButton: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 assert.isTrue(dialog.getAttribute('type') == typeDanger);
                 dialog.close();
 
                 confirmComponent.show();
                 confirmComponent.options = {message: 'type warning dialog', type: typeWarning, showCloseButton: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 assert.isTrue(dialog.getAttribute('type') == typeWarning);
                 dialog.close();
 
                 confirmComponent.show();
                 confirmComponent.options = {message: 'type info dialog', type: typeInfo, showCloseButton: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 assert.isTrue(dialog.getAttribute('type') == typeInfo);
                 dialog.close();
 
                 confirmComponent.show();
                 confirmComponent.options = {message: 'type success dialog', type: typeSuccess, showCloseButton: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 assert.isTrue(dialog.getAttribute('type') == typeSuccess);
                 dialog.close();
             });
@@ -83,7 +83,7 @@ suite('Given an instance of ConfirmComponent', () => {
         suite('when pass a full-screen property', ()=>{
            test('should add fullScreen attribute to paper-dialog component', async()=>{
                confirmComponent.options = {message: 'full screen dialog', fullScreen: true, showCloseButton: true};
-               await confirmComponent.renderComplete;
+               await confirmComponent.updateComplete;
                assert.isTrue(dialog.getAttribute('fullScreen') == "true");
                dialog.close();
            });
@@ -101,7 +101,7 @@ suite('Given an instance of ConfirmComponent', () => {
                 const width2 = "80vw";
 
                 confirmComponent.options = {message: 'custom styles dialog', showCloseButton: true, styles: {backgroundColor: color1, textColor: color2, closeIconColor: color3, acceptColor: color2, actionsBackgroundColor: color4, headerBackgroundColor: color2, width: width1, height: height1} };
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 let closeButton = dialog.querySelector('#close-btn');
                 let actionButton = dialog.querySelector('#accept-btn');
                 let actionsContainer = dialog.querySelector('#actions');
@@ -118,7 +118,7 @@ suite('Given an instance of ConfirmComponent', () => {
 
                 confirmComponent.show();
                 confirmComponent.options = {message: 'custom styles dialog', showCloseButton: true, styles: {backgroundColor: color4, textColor: color3, closeIconColor: color1, acceptColor: color5, actionsBackgroundColor: color1, headerBackgroundColor: color4, width: width2, height: height2} };
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 closeButton = dialog.querySelector('#close-btn');
                 actionButton = dialog.querySelector('#accept-btn');
                 actionsContainer = dialog.querySelector('#actions');
@@ -137,7 +137,7 @@ suite('Given an instance of ConfirmComponent', () => {
                 const acceptLabel = 'Aceptar';
                 const cancelLabel = 'Cancelar';
                 confirmComponent.options = {title: 'my title', message: 'my message', acceptLabel: acceptLabel, cancelLabel: cancelLabel};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 let cancelButton = dialog.querySelector('#cancel-btn');
                 let acceptButton = dialog.querySelector('#accept-btn');
                 assert.isTrue(acceptButton.innerText == acceptLabel.toUpperCase());
@@ -147,7 +147,7 @@ suite('Given an instance of ConfirmComponent', () => {
         suite('when pass modal property', ()=>{
            test('should set as value = true the properties: with-backdrop, no-cancel-on-outside-click and no-cancel-on-esc-key', async()=>{
                confirmComponent.options = {title: 'my title', message: 'my message', modal: true};
-               await confirmComponent.renderComplete;
+               await confirmComponent.updateComplete;
                assert.isTrue(dialog.getAttribute('modal') == "true");
                assert.isTrue(dialog.modal == true);
                assert.isTrue(dialog.withBackdrop == true);
@@ -158,7 +158,7 @@ suite('Given an instance of ConfirmComponent', () => {
         suite('when pass headerDismiss property', ()=>{
             test('should close dialog when click on header', async()=>{
                 confirmComponent.options = {title: 'my title', message: 'my message', headerDismiss: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 let stub = sinon.stub(dialog, 'close');
                 dialog.querySelector('#header').click();
                 assert.isTrue(stub.calledOnce);
@@ -167,7 +167,7 @@ suite('Given an instance of ConfirmComponent', () => {
         suite('when pass withoutActions property', ()=>{
             test('shouldn\'t display action buttons', async()=>{
                 confirmComponent.options = {title: 'my title', message: 'my message', withoutActions: true};
-                await confirmComponent.renderComplete;
+                await confirmComponent.updateComplete;
                 let actionButtons = dialog.querySelector('#actions');
                 assert.notExists(actionButtons);
             });
@@ -185,7 +185,7 @@ suite('Given an instance of ConfirmComponent', () => {
             suite('when click on cancel button', ()=>{
                 test('the event.detail should be false', async()=>{
                     confirmComponent.options = {title: 'Dialog with custom component', type: "info", acceptLabel: 'Accept', showCloseButton: true, cancelLabel: 'Cancel', htmlUrl: '../test/ui/test-components/custom-confirm.js', htmlTag: 'custom-confirm', model: {arg: 'arg1'}};
-                    await confirmComponent.renderComplete;
+                    await confirmComponent.updateComplete;
                     let cancelButton : HTMLElement = confirmComponent.shadowRoot.querySelector('#cancel-btn');
                     assert.exists(cancelButton);
                     let eventSpy = sinon.spy();
@@ -200,7 +200,7 @@ suite('Given an instance of ConfirmComponent', () => {
             /*suite('when click on close button', ()=>{
                 test('the event.detail should be false', async()=>{
                     confirmComponent.options = {title: 'Dialog with custom component', type: "info", acceptLabel: 'Accept', showCloseButton: true, cancelLabel: 'Cancel', htmlUrl: '../test/ui/test-components/custom-confirm.js', htmlTag: 'custom-confirm', model: {arg: 'arg1'}};
-                    await confirmComponent.renderComplete;
+                    await confirmComponent.updateComplete;
                     let closeButton : HTMLElement = confirmComponent.shadowRoot.querySelector('#close-btn');
                     assert.exists(closeButton);
                     let eventSpy = sinon.spy();
@@ -215,7 +215,7 @@ suite('Given an instance of ConfirmComponent', () => {
             suite('when click on accept button', ()=>{
                 test('the event.detail should be true', async()=>{
                     confirmComponent.options = {title: 'Dialog with custom component', type: "info", acceptLabel: 'Accept', showCloseButton: true, cancelLabel: 'Cancel', htmlUrl: '../test/ui/test-components/custom-confirm.js', htmlTag: 'custom-confirm', model: {arg: 'arg1'}};
-                    await confirmComponent.renderComplete;
+                    await confirmComponent.updateComplete;
                     let acceptButton : HTMLElement = confirmComponent.shadowRoot.querySelector('#accept-btn');
                     assert.exists(acceptButton);
                     let eventSpy = sinon.spy();
@@ -230,7 +230,7 @@ suite('Given an instance of ConfirmComponent', () => {
             suite('when click on cancel button', ()=>{
                 test('should not fire canAccept method', async()=>{
                     confirmComponent.options = {title: 'Dialog with custom component', type: "info", acceptLabel: 'Accept', showCloseButton: true, cancelLabel: 'Cancel', htmlUrl: '../test/ui/test-components/custom-confirm.js', htmlTag: 'custom-confirm', model: {arg: 'arg1'}};
-                    await confirmComponent.renderComplete;
+                    await confirmComponent.updateComplete;
                     let stub = {canAccept: sinon.stub().returns(Promise.resolve(false))};
                     let eventSpy = sinon.spy();
                     sinon.stub(confirmComponent, 'getCustomComponent').returns(stub);
@@ -245,7 +245,7 @@ suite('Given an instance of ConfirmComponent', () => {
             /*suite('when click on close button', ()=>{
                 test('should not fire canAccept method', async()=>{
                     confirmComponent.options = {title: 'Dialog with custom component', type: "info", acceptLabel: 'Accept', showCloseButton: true, cancelLabel: 'Cancel', htmlUrl: '../test/ui/test-components/custom-confirm.js', htmlTag: 'custom-confirm', model: {arg: 'arg1'}};
-                    await confirmComponent.renderComplete;
+                    await confirmComponent.updateComplete;
                     let stub = {canAccept: sinon.stub().returns(Promise.resolve(false))};
                     let eventSpy = sinon.spy();
                     sinon.stub(confirmComponent, 'getCustomComponent').returns(stub);

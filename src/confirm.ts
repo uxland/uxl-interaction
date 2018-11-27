@@ -40,18 +40,18 @@ export const doConfirm = async(options: ConfirmOptions, localizer?: Localizer): 
             await import(options.htmlUrl);
 
         const component: any  = document.body.appendChild(document.createElement(componentName));
-
         component.options = options;
+        let result = component._updatePromise;
 
-        if(options.htmlTag){
-            await component.renderComplete;
-            let customComponent = component.shadowRoot.querySelector(`#__custom-element__`);
-            customComponent.model = options.model;
-        }
+        result.then(()=>{
+            if(options.htmlTag){
+                let customComponent = component.shadowRoot.querySelector(`#__custom-element__`);
+                customComponent.model = options.model;
+            }
+            component.addEventListener('closed', closeComponent);
+            component.options && component.show();
+        });
 
-        component.options && component.show();
-
-        component.addEventListener('closed', closeComponent);
         function closeComponent(e){
             component.remove();
             resolve(e.detail);
