@@ -24,26 +24,29 @@ export const notify = async(options: NotifyOptions, localizer?: Localizer): Prom
     invariant(options.message || options.htmlTag, 'message or htmlTag options properties are required');
     return new Promise<any>(async(resolve) =>{
         const componentName = 'notify-component';
-        const component: any  = document.body.appendChild(document.createElement(componentName));
+
         if(localizer && options.message)
             options = {...options, message: localizer(options.message, {...options.messageArgs})};
 
         if(options.htmlTag && options.htmlUrl)
             await import(options.htmlUrl);
 
+        const component: any  = document.body.appendChild(document.createElement(componentName));
         component.options = options;
+        let result = component._updatePromise;
 
-        if(options.htmlTag){
-            await component.renderComplete;
-            let customComponent = component.shadowRoot.querySelector(`#__custom-element__`);
-            customComponent.model = options.model;
-        }
+        result.then(()=>{
+            if(options.htmlTag){
+                let customComponent = component.shadowRoot.querySelector(`#__custom-element__`);
+                customComponent.model = options.model;
+            }
+            component.addEventListener('closed', closeComponent);
+            component.options && component.show();
+        });
 
-        component.options && component.show();
-        component.addEventListener('closed', closeComponent);
-        function closeComponent(){
+        function closeComponent(e){
             component.remove();
-            resolve(true);
+            resolve(e.detail);
         }
     });
 };

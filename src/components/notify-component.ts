@@ -4,35 +4,35 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-toast/paper-toast.js';
 import {NotifyOptions} from "../notify";
-import {style as styleTemplate} from './notify-component-styles.js';
+import CSS from './notify-component-styles.js';
 
 const renderCloseButton = (show: boolean, classifier: any) => show ? html`
                         <paper-icon-button
                             id="action-btn"     
-                            class$="${classifier}" 
+                            class="close-btn ${classifier}" 
                             icon="icons:close">  
                         </paper-icon-button>` : undefined;
 
-const renderCustomContent = (options: NotifyOptions, props: NotifyComponent) => {
-    if(options.htmlTag){
-        let component = document.createElement(options.htmlTag);
+const renderCustomContent = (props: NotifyComponent) => {
+    if(props.options.htmlTag){
+        let component = document.createElement(props.options.htmlTag);
         component.setAttribute('id', '__custom-element__');
         component.addEventListener('close', props.close);
         return html `${component}`;
     }
 };
 
-const renderContent = (options: NotifyOptions, props: NotifyComponent) => options.message ? renderCloseButton(options.showCloseButton, options.classifiers) : renderCustomContent(options, props);
+const renderContent = (props: NotifyComponent) => props.options.message ? renderCloseButton(props.options.showCloseButton, props.options.classifiers) : renderCustomContent(props);
 
-const renderToast = (options: NotifyOptions, props: NotifyComponent) => html`
+const renderToast = (props: NotifyComponent) => html`
 <paper-toast
             id="toast" 
-            class$="${(options.classifiers || []).map(item => item)}"
-            position$="${options.position}" 
-            duration$="${options.delay}"
-            type$="${options.type}" 
-            text="${options.message || ''}">
-            ${renderContent(options, props)}
+            class="${(props.options.classifiers || []).map(item => item)}"
+            position="${props.options.position}" 
+            .duration="${props.options.delay}"
+            type="${props.options.type}" 
+            .text="${props.options.message || ''}">
+            ${renderContent(props)}
 </paper-toast>
 `;
 
@@ -41,6 +41,17 @@ const getOptionsStyles = (options: NotifyOptions) => options && options.styles ?
 
 @customElement('notify-component')
 export class NotifyComponent extends LitElement {
+    render(){
+        return html`${renderToast(this)} ${CSS}`;
+    }
+
+    updated(changedProps){
+        let styles = getOptionsStyles(changedProps ? changedProps.options: undefined);
+        styles.iconColor && this.closeButton && this.closeButton.style.setProperty('--iron-icon-fill-color', styles.iconColor);
+        styles.textColor && this.toast && this.toast.style.setProperty('--paper-toast-color', styles.textColor);
+        styles.backgroundColor && this.toast && this.toast.style.setProperty('--paper-toast-background-color', styles.backgroundColor);
+    }
+
     @property({reflectToAttribute: true, type: Object})
     options: NotifyOptions;
 
@@ -49,7 +60,7 @@ export class NotifyComponent extends LitElement {
         this.dispatchEvent(new CustomEvent('closed'));
     }
 
-    @listen('click', `.${closeButtonClassifier}`)
+    @listen('click', '.close-btn')
     closeToast(e) {
         this.toast.close();
     }
@@ -60,26 +71,11 @@ export class NotifyComponent extends LitElement {
     @item('action-btn')
     closeButton: HTMLElement;
 
-    _render(props: NotifyComponent): any {
-        let options = props.options || {};
-        return html`
-        ${renderToast(options, props)}
-        ${styleTemplate}
-        `;
-    }
-
     show() {
         this.toast.show();
     }
 
     close(){
         this.toast.close();
-    }
-
-    _didRender(props: NotifyComponent, changedProps: NotifyComponent, prevProps: NotifyComponent){
-        let styles = getOptionsStyles(changedProps ? changedProps.options: undefined);
-        styles.iconColor && this.closeButton && this.closeButton.style.setProperty('--iron-icon-fill-color', styles.iconColor);
-        styles.textColor && this.toast && this.toast.style.setProperty('--paper-toast-color', styles.textColor);
-        styles.backgroundColor && this.toast && this.toast.style.setProperty('--paper-toast-background-color', styles.backgroundColor);
     }
 }

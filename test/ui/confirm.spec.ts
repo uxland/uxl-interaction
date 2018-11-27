@@ -30,7 +30,7 @@ describe('When invoking `confirm` method', () =>{
         let options : ConfirmOptions = {title: 'my title', message: 'my message'};
         let {stub, mock} = createStub();
         let p = doConfirm(options);
-        await mock.renderComplete;
+        await mock.updateComplete;
         assert.exists(document.body.querySelector(mockComponentName));
         assert.isTrue(mock.show.calledOnce);
         assert.strictEqual(mock.options, options);
