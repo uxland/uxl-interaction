@@ -15,15 +15,15 @@ paper-dialog{
   padding: 0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-}
 
-#header h2{
-  padding: 0 24px;
-  font-weight: 400;
-}
+  h2{
+    padding: 0 24px;
+    font-weight: 400;
+  }
 
-#header paper-icon-button{
-  margin-right: 16px;
+  paper-icon-button{
+    margin-right: 16px;
+  }
 }
 
 #content{

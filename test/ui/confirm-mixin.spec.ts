@@ -1,13 +1,13 @@
 import {ConfirmMixin} from "../../src/confirm-mixin";
 import {PolymerElement} from '@polymer/polymer/polymer-element';
 import * as sinon from 'sinon';
-import {customElement} from "@uxland/uxl-polymer2-ts";
+import {customElement, LitElement} from "lit-element";
 const {expect} = chai;
 
 describe('Given an instance of confirmMixin', () =>{
     it('should raise closed event when invoking close function', () =>{
         @customElement('my-component1')
-        class Component extends ConfirmMixin(PolymerElement){
+        class Component extends ConfirmMixin(LitElement){
 
         }
         let c: any = new Component();

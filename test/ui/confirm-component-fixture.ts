@@ -1,6 +1,5 @@
 import {ConfirmComponent} from "../../src/components/confirm-component";
 import * as sinon from 'sinon';
-import {conforms} from "lodash-es";
 const assert = chai.assert;
 const fixtureName = 'confirm-test-fixture';
 

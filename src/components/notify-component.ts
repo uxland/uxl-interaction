@@ -1,17 +1,19 @@
-import {customElement, item, listen, property} from "@uxland/uxl-polymer2-ts"
-import {html, LitElement} from '@polymer/lit-element/lit-element';
+import {customElement, query, property} from "lit-element/lib/decorators";
+import {html, LitElement} from 'lit-element/lit-element';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-toast/paper-toast.js';
 import {NotifyOptions} from "../notify";
 import CSS from './notify-component-styles.js';
 
-const renderCloseButton = (show: boolean, classifier: any) => show ? html`
-                        <paper-icon-button
-                            id="action-btn"     
-                            class="close-btn ${classifier}" 
-                            icon="icons:close">  
-                        </paper-icon-button>` : undefined;
+const renderCloseButton = (props: NotifyComponent) => props.options.showCloseButton
+    ? html`<paper-icon-button 
+                @click="${props.closeToast}" 
+                id="action-btn" 
+                class="close-btn ${props.options.classifiers}" 
+                icon="icons:close">
+           </paper-icon-button>`
+    : html ``;
 
 const renderCustomContent = (props: NotifyComponent) => {
     if(props.options.htmlTag){
@@ -22,21 +24,23 @@ const renderCustomContent = (props: NotifyComponent) => {
     }
 };
 
-const renderContent = (props: NotifyComponent) => props.options.message ? renderCloseButton(props.options.showCloseButton, props.options.classifiers) : renderCustomContent(props);
+const renderContent = (props: NotifyComponent) => props.options.message
+    ? renderCloseButton(props)
+    : renderCustomContent(props);
 
 const renderToast = (props: NotifyComponent) => html`
 <paper-toast
-            id="toast" 
-            class="${(props.options.classifiers || []).map(item => item)}"
-            position="${props.options.position}" 
-            .duration="${props.options.delay}"
-            type="${props.options.type}" 
-            .text="${props.options.message || ''}">
-            ${renderContent(props)}
+        id="toast" 
+        class="${(props.options.classifiers || []).map(item => item)}"
+        position="${props.options.position}" 
+        .duration="${props.options.delay}"
+        type="${props.options.type}"
+        @iron-overlay-closed="${props.toastClosed}" 
+        .text="${props.options.message || ''}">
+        ${renderContent(props)}
 </paper-toast>
 `;
 
-const closeButtonClassifier = 'close-btn';
 const getOptionsStyles = (options: NotifyOptions) => options && options.styles ? options.styles :  {};
 
 @customElement('notify-component')
@@ -55,20 +59,18 @@ export class NotifyComponent extends LitElement {
     @property({reflectToAttribute: true, type: Object})
     options: NotifyOptions;
 
-    @listen('iron-overlay-closed', '#toast')
-    onToastClosed(e) {
+    toastClosed(e) {
         this.dispatchEvent(new CustomEvent('closed'));
     }
 
-    @listen('click', '.close-btn')
     closeToast(e) {
         this.toast.close();
     }
 
-    @item('toast')
+    @query('#toast')
     toast: any;
 
-    @item('action-btn')
+    @query('#action-btn')
     closeButton: HTMLElement;
 
     show() {

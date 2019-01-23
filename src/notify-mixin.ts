@@ -1,5 +1,5 @@
 import {dedupingMixin} from '@polymer/polymer/lib/utils/mixin';
-import {property} from "@uxland/uxl-polymer2-ts";
+import {property} from "lit-element/lib/decorators";
 export interface NotifyMixinBase<T = any> {
     model: T;
     close(): void;

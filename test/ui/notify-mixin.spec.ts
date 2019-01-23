@@ -1,13 +1,13 @@
 import {NotifyMixin} from "../../src/notify-mixin";
 import {PolymerElement} from '@polymer/polymer/polymer-element';
 import * as sinon from 'sinon';
-import {customElement} from "@uxland/uxl-polymer2-ts";
+import {customElement, LitElement} from "lit-element";
 const {expect} = chai;
 
 describe('Given an instance of notifyMixin', () =>{
    it('should raise closed event when invoking close function', () =>{
        @customElement('my-component1')
-       class Component extends NotifyMixin(PolymerElement){
+       class Component extends NotifyMixin(LitElement){
 
        }
        let c: any = new Component();

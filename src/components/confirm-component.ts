@@ -1,5 +1,5 @@
-import {html, LitElement} from "@polymer/lit-element";
-import {customElement, item, listen, property} from "@uxland/uxl-polymer2-ts";
+import {html, LitElement} from "lit-element";
+import {customElement, query, property} from "lit-element/lib/decorators";
 import {ConfirmOptions, ConfirmStyles} from "../confirm";
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-dialog/paper-dialog';
@@ -8,18 +8,20 @@ import '@polymer/paper-icon-button/paper-icon-button';
 import CSS from './confirm-component-styles.js';
 import {IConfirmMixin} from "../confirm-mixin";
 
-const renderCloseButton = (show: boolean) => show ? html`
-                        <paper-icon-button
-                            id="close-btn"     
-                            icon="icons:close">  
-                        </paper-icon-button>` : ``;
+const renderCloseButton = (props: ConfirmComponent) => props.options.showCloseButton
+    ? html`<paper-icon-button @click="${props._close}" id="close-btn" icon="icons:close"></paper-icon-button>`
+    : html``;
 
-const renderActions = (options: ConfirmOptions) => !options.withoutActions ? html `
-                        <div id="actions">
-                            <paper-button id="cancel-btn">${options.cancelLabel}</paper-button>
-                            <paper-button id="accept-btn" autofocus>${options.acceptLabel}</paper-button>
-                        </div>` : ``;
+const renderActions = (props: ConfirmComponent) => !props.options.withoutActions
+    ? html `
+        <div id="actions">
+            <paper-button @click="${props._cancel}" id="cancel-btn">${props.options.cancelLabel}</paper-button>
+            <paper-button @click="${props._accept}" id="accept-btn" autofocus>${props.options.acceptLabel}</paper-button>
+        </div>`
+    : html ``;
+
 const renderMessage = (options: ConfirmOptions) => html`<div id="message">${options.message || ''}</div>` ;
+
 const renderCustomContent = (options: ConfirmOptions, props: ConfirmComponent) => {
     if(options.htmlTag){
         let component = document.createElement(options.htmlTag);
@@ -29,19 +31,20 @@ const renderCustomContent = (options: ConfirmOptions, props: ConfirmComponent) =
     }
     return html ``;
 };
+
 const renderContent = (options: ConfirmOptions, props: ConfirmComponent) => options.message ? renderMessage(options) : renderCustomContent(options, props);
 
 const renderDialog = (props: ConfirmComponent) => html`
     <paper-dialog id="dialog" type="${props.options.type}" ?fullScreen="${props.options.fullScreen}" ?modal="${props.options.modal}">
-    <div id="header">
+    <div @click="${props._dismiss}" id="header">
         <h2>${props.options.title || ''}</h2>
-        ${renderCloseButton(props.options.showCloseButton)}
+        ${renderCloseButton(props)}
     </div>
     <div id="content">
         <paper-dialog-scrollable>
             ${renderContent(props.options, props)} 
         </paper-dialog-scrollable>
-        ${renderActions(props.options)}
+        ${renderActions(props)}
     </div>
 </paper-dialog>
 `;
@@ -71,23 +74,25 @@ export class ConfirmComponent extends LitElement {
     @property({reflectToAttribute: true, type: Object})
     options: ConfirmOptions;
 
-    @item('dialog')
+    @query('#dialog')
     dialog: any;
 
-    @listen('click', '#cancel-btn')
-    onCancelClick(e){
+    _cancel(e){
         this.close(false);
     }
 
-    @listen('click', '#close-btn')
-    closeDialog(e) {
+    _close(e) {
         this.close(false);
     }
 
-    @listen('click', '#accept-btn')
-    onAcceptClick(e){
+    _accept(e){
         this.close(true);
     }
+
+    _dismiss(e){
+        this.options.headerDismiss && this.close(false);
+    }
+
     componentCloseRequest(e: CustomEvent){
         this.close(e.detail);
     }
@@ -99,37 +104,31 @@ export class ConfirmComponent extends LitElement {
                 let canAccept = await component.canAccept();
                 if(!canAccept)
                     return;
-                if(component.accept){
+                if(component.accept)
                     await component.accept();
-                }
             }
         }
         this.dialog.close();
         this.dispatchEvent(new CustomEvent('closed', {detail: result}));
     }
 
-    @listen('click', '#header')
-    onHeaderClick(e){
-        this.options.headerDismiss && this.close(false);
-    }
-
     getCustomComponent() : IConfirmMixin{
         return this.shadowRoot.querySelector('#__custom-element__') as IConfirmMixin;
     }
 
-    @item('close-btn')
+    @query('#close-btn')
     closeButton: HTMLElement;
 
-    @item('accept-btn')
+    @query('#accept-btn')
     acceptButton: HTMLElement;
 
-    @item('actions')
+    @query('#actions')
     actionsContainer: HTMLElement;
 
-    @item('header')
+    @query('#header')
     header: HTMLElement;
 
-    @item('content')
+    @query('#content')
     content: HTMLElement;
 
     show(){
