@@ -1,6 +1,5 @@
 import './components/confirm-component';
 import {invariant} from '@uxland/uxl-utilities/invariant';
-import {importHref} from '@uxland/uxl-utilities/import-href';
 declare type Localizer = (key: string, ...args: any[]) => string;
 
 export interface ConfirmOptions<T = any> {

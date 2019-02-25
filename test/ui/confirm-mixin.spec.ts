@@ -1,5 +1,4 @@
 import {ConfirmMixin} from "../../src/confirm-mixin";
-import {PolymerElement} from '@polymer/polymer/polymer-element';
 import * as sinon from 'sinon';
 import {customElement, LitElement} from "lit-element";
 const {expect} = chai;
@@ -20,7 +19,7 @@ describe('Given an instance of confirmMixin', () =>{
     }) ;
     it('should declare a model property', () =>{
         @customElement('my-component2')
-        class Component extends ConfirmMixin(PolymerElement){
+        class Component extends ConfirmMixin(LitElement){
 
         }
         expect((<any>Component).properties.model).exist;

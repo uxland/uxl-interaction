@@ -1,6 +1,5 @@
 import {dedupingMixin} from '@polymer/polymer/lib/utils/mixin';
-import {property} from "lit-element/lib/decorators";
-import {LitElement} from "lit-element";
+import {property, LitElement} from "lit-element";
 export interface ConfirmMixinBase<T = any> extends LitElement{
     model: T;
     close(result: boolean): void;
