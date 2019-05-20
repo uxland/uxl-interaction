@@ -14,7 +14,7 @@ const renderCloseButton = (props: ConfirmComponent) => props.options.showCloseBu
 
 const renderActions = (props: ConfirmComponent) => !props.options.withoutActions
     ? html `
-        <div id="actions">
+        <div id="actions" part="actions">
             <paper-button @click="${props._cancel}" id="cancel-btn">${props.options.cancelLabel}</paper-button>
             <paper-button @click="${props._accept}" id="accept-btn" autofocus>${props.options.acceptLabel}</paper-button>
         </div>`
@@ -35,12 +35,12 @@ const renderCustomContent = (options: ConfirmOptions, props: ConfirmComponent) =
 const renderContent = (options: ConfirmOptions, props: ConfirmComponent) => options.message ? renderMessage(options) : renderCustomContent(options, props);
 
 const renderDialog = (props: ConfirmComponent) => html`
-    <paper-dialog id="dialog" type="${props.options.type}" ?fullScreen="${props.options.fullScreen}" ?modal="${props.options.modal}">
-    <div @click="${props._dismiss}" id="header">
-        <h2>${props.options.title || ''}</h2>
+    <paper-dialog id="dialog" type="${props.options.type}" ?fullScreen="${props.options.fullScreen}" ?modal="${props.options.modal}" part="dialog">
+    <div @click="${props._dismiss}" id="header" part="header">
+        <h2 part="title">${props.options.title || ''}</h2>
         ${renderCloseButton(props)}
     </div>
-    <div id="content">
+    <div id="content" part="content">
         <paper-dialog-scrollable>
             ${renderContent(props.options, props)} 
         </paper-dialog-scrollable>

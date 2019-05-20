@@ -1,32 +1,40 @@
 @import "flex-layout-styles";
 
-paper-dialog{
+:host {
+  --paper-dialog-color: var(--uxl-interaction-text-color, var(--primary-text-color));
+  --paper-dialog-background-color: var(--uxl-interaction-background-color, var(--primary-background-color));
+  --iron-icon-fill-color: var(--uxl-interaction-icon-color, currentcolor);
+
+}
+
+paper-dialog {
   width: 40vw;
   height: auto;
   border-radius: 8px;
 }
 
-#header{
+#header {
   @include layout-horizontal;
   @include layout-justified;
   @include layout-center;
+  background-color: var(--uxl-interaction-header-background-color, transparent);
   height: 64px;
   margin: 0;
   padding: 0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 
-  h2{
+  h2 {
     padding: 0 24px;
     font-weight: 400;
   }
 
-  paper-icon-button{
+  paper-icon-button {
     margin-right: 16px;
   }
 }
 
-#content{
+#content {
   @include layout-vertical;
   @include layout-justified;
   margin: 0;
@@ -34,19 +42,19 @@ paper-dialog{
   flex: 1;
 }
 
-paper-dialog-scrollable{
+paper-dialog-scrollable {
   @include layout-vertical;
   padding: 24px;
 }
 
-#actions{
+#actions {
   @include layout-horizontal;
   @include layout-end-justified;
   margin: 8px 0;
   padding: 0 8px 0 0;
 }
 
-paper-dialog[fullScreen]{
+paper-dialog[fullScreen] {
   @include layout-vertical;
   position: fixed;
   top: 0;
@@ -56,42 +64,42 @@ paper-dialog[fullScreen]{
   height: 100%;
 }
 
-paper-dialog[fullScreen], paper-dialog[fullScreen] #header{
+paper-dialog[fullScreen], paper-dialog[fullScreen] #header {
   border-radius: 0;
 }
 
-paper-dialog[type="info"] #header{
-  background-color: #2196F3;
+paper-dialog[type="info"] #header {
+  background-color: var(--uxl-interaction-header-background-color, #2196F3);
   color: #fff;
 }
 
-paper-dialog[type="info"] #accept-btn{
-  color: #2196F3;
+paper-dialog[type="info"] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #2196F3);
 }
 
-paper-dialog[type="danger"] #header{
-  background-color: #F44336;
+paper-dialog[type="danger"] #header {
+  background-color: var(--uxl-interaction-header-background-color, #F44336);
   color: #fff;
 }
 
-paper-dialog[type="danger"] #accept-btn{
-  color: #F44336;
+paper-dialog[type="danger"] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #F44336);
 }
 
-paper-dialog[type="warning"] #header{
-  background-color: #FF9800;
+paper-dialog[type="warning"] #header {
+  background-color: var(--uxl-interaction-header-background-color, #FF9800);
   color: #fff;
 }
 
-paper-dialog[type="warning"] #accept-btn{
-  color: #FF9800;
+paper-dialog[type="warning"] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #FF9800);
 }
 
-paper-dialog[type="success"] #header{
-  background-color: #4CAF50;
+paper-dialog[type="success"] #header {
+  background-color: var(--uxl-interaction-header-background-color, #4CAF50);
   color: #fff;
 }
 
-paper-dialog[type="success"] #accept-btn{
-  color: #4CAF50;
+paper-dialog[type="success"] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #4CAF50);
 }

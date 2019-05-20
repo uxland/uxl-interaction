@@ -37,7 +37,8 @@ The component provides 2 methods that correspond to 2 modes of interaction with 
 
 The component can be can customized through passing some **properties** to the methods what we have seen.
 
-### `doConfirm()` options:
+### Mode `doConfirm()` 
+####Options
 
 `title?: string;`: text that displays on dialog header
 
@@ -70,8 +71,36 @@ The component can be can customized through passing some **properties** to the m
 `htmlUrl?: string;`: if you want to change the content template unless display a simple message, you can pass an htmltag and htmlUrl to display your custom template
 
 `model?: T;`: if you want pass a custom model to display some information for your application, set these property with your custom data. 
+####Styling
 
-### `notify()` options:
+#####Stylable Shadow Parts
+The following styleable part's of the element `confirm-component` are available for styling:
+
+| Shadow tree part | Description | Style outside of shadow tree |
+| --- | --- | --- |
+| `<paper-dialog part="dialog">...` | The confirm dialog parent element | `confirm-component::part(dialog) {...}` |
+| `<div id="header" part="header">...` | The header of the confirm dialog | `confirm-component::part(header) {...}` |
+| `<h2 part="title">...` | The title of the confirm dialog | `confirm-component::part(title) {...}` |
+| `<div id="content" part="content">...` | The content of the confirm dialog | `confirm-component::part(content) {...}` |
+| `<div id="actions" part="actions">...` | The action footer of the confirm dialog | `confirm-component::part(actions) {...}` |
+
+#####Mixins
+The following custom properties and mixins are available for styling:
+
+| Custom property | Description | Default |
+| --- | --- | --- |
+| `--uxl-interaction-text-color` | Text color of the dialog | `--paper-dialog-color` |
+| `--uxl-interaction-background-color` | The background color of the dialog | `--primary-background-color` |
+| `--uxl-interaction-icon-color` | Fill color of the svg icon that close dialog | `--iron-icon-fill-color` |
+| `--uxl-interaction-accept-button-color` | Color of the acept button of the dialog | option `styles` |
+| `--uxl-interaction-header-background-color` | Fill color of the svg icon that close dialog | option `styles` |
+
+
+
+
+
+### Mode `notify()`
+####Options
 
 `message?: string;`: text that displays on snackbar content
 
@@ -94,6 +123,17 @@ The component can be can customized through passing some **properties** to the m
 `classifiers?: NofifyClassifiers[];`: an array of classes to custom more the snackbar. 
 
 `model?: T;`: if you want pass a custom model to display some information for your application, set these property with your custom data.
+#####Stylable Shadow Parts
+
+The following styleable part's of the element `notify-component` are available for styling:
+
+| Shadow tree part | Description | Style outside of shadow tree |
+| --- | --- | --- |
+| `<paper-toast part="toast">...` | The notify dialog parent element | `notify-component::part(toast) {...}` |
+| `<div id="header" part="header">...` | The header of the notify dialog | `confirm-component::part(header) {...}` |
+| `<h2 part="title">...` | The title of the notify dialog | `confirm-component::part(title) {...}` |
+| `<div id="content" part="content">...` | The content of the notify dialog | `confirm-component::part(content) {...}` |
+#####Mixins
 
 ###Localizer
 
