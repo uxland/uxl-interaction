@@ -1,6 +1,6 @@
 import {customElement, LitElement, html, unsafeCSS, css} from "lit-element";
 import {listen} from '@uxland/uxl-utilities/listen';
-import {notify} from '../src/notify';
+import {notify} from '../../src/notify';
 import * as styles from './notify-demo-styles.scss';
 
 @customElement('notify-demo')

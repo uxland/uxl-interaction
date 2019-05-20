@@ -1,0 +1,10 @@
+confirm-component {
+  --uxl-interaction-text-color: orange;
+  --uxl-interaction-background-color: green;
+  --uxl-interaction-icon-color: blue;
+  --uxl-interaction-header-background-color: red;
+}
+
+notify-component {
+
+}

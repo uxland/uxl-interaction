@@ -1,6 +1,6 @@
 import {customElement, LitElement, html, unsafeCSS, css} from "lit-element";
 import {listen} from '@uxland/uxl-utilities/listen';
-import {doConfirm} from '../src/confirm';
+import {doConfirm} from '../../src/confirm';
 import * as styles from './confirm-demo-styles.scss';
 
 @customElement('confirm-demo')
@@ -72,7 +72,7 @@ export class ConfirmDemo extends LitElement{
 }
 
 const template = (props: ConfirmDemo) => html`
-    <h2>Confirm Demo</h2>
+    <h1>Confirm demo</h1>
     <button id="button1">Show normal Confirm</button>
     <button id="button2">Show normal Confirm with close button</button>
     <button id="button3">Show info type Confirm</button>
@@ -84,4 +84,5 @@ const template = (props: ConfirmDemo) => html`
     <button id="button9">Show headerDismiss Confirm</button>
     <button id="button10">Show custom colors Confirm</button>
     <button id="button11">Show custom size Confirm</button>
+    <button id="button12">Show custom component Confirm</button>
 `;

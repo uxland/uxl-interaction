@@ -1,11 +1,11 @@
-import {html, LitElement} from "lit-element";
+import {css, html, LitElement, unsafeCSS} from "lit-element";
 import {customElement, query, property} from "lit-element/lib/decorators";
 import {ConfirmOptions, ConfirmStyles} from "../confirm";
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-dialog/paper-dialog';
 import '@polymer/paper-button/paper-button';
 import '@polymer/paper-icon-button/paper-icon-button';
-import CSS from './confirm-component-styles';
+import * as styles from './confirm-component-styles.scss';
 import {IConfirmMixin} from "../confirm-mixin";
 
 const renderCloseButton = (props: ConfirmComponent) => props.options.showCloseButton
@@ -55,7 +55,11 @@ const getOptionsStyles = (options: ConfirmOptions) => options && options.styles 
 export class ConfirmComponent extends LitElement {
 
     render(){
-        return html`${CSS}${renderDialog(this)}`;
+        return html`${renderDialog(this)}`;
+    }
+
+    static get styles() {
+        return css`${unsafeCSS(styles)}`;
     }
 
     updated(changedProperties){

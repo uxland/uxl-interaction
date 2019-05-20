@@ -1,10 +1,10 @@
 import {customElement, query, property} from "lit-element/lib/decorators";
-import {html, LitElement} from 'lit-element/lit-element';
+import {css, html, LitElement, unsafeCSS} from 'lit-element';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-toast/paper-toast.js';
 import {NotifyOptions} from "../notify";
-import CSS from './notify-component-styles';
+import * as styles from './notify-component-styles.scss';
 
 const renderCloseButton = (props: NotifyComponent) => props.options.showCloseButton
     ? html`<paper-icon-button 
@@ -46,7 +46,11 @@ const getOptionsStyles = (options: NotifyOptions) => options && options.styles ?
 @customElement('notify-component')
 export class NotifyComponent extends LitElement {
     render(){
-        return html`${renderToast(this)} ${CSS}`;
+        return html`${renderToast(this)}`;
+    }
+
+    static get styles() {
+        return css`${unsafeCSS(styles)}`;
     }
 
     updated(changedProps){
