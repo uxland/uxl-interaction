@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Confirm Demo</title>
 </head>
 <style>
     button{
@@ -22,6 +22,25 @@
     #button4:hover{background-color: #EF6C00;}
     #button6{background-color: #4CAF50;}
     #button6:hover{background-color: #2E7D32;}
+
+    confirm-component {
+        --uxl-interaction-text-color: orange;
+        --uxl-interaction-background-color: green;
+        --uxl-interaction-icon-color: blue;
+        --uxl-interaction-header-background-color: red;
+    }
+
+
+/*
+    confirm-component::part(dialog) {
+        background-color: red;
+    }
+
+    confirm-component::part(title) {
+        font-size: 14px;
+    }
+*/
+
 </style>
 <body>
 <button id="button1">Show normal Confirm</button>
