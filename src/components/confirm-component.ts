@@ -5,7 +5,7 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-dialog/paper-dialog';
 import '@polymer/paper-button/paper-button';
 import '@polymer/paper-icon-button/paper-icon-button';
-import CSS from './confirm-component-styles.js';
+import CSS from './confirm-component-styles';
 import {IConfirmMixin} from "../confirm-mixin";
 
 const renderCloseButton = (props: ConfirmComponent) => props.options.showCloseButton

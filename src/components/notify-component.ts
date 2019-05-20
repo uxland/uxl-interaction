@@ -4,7 +4,7 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-toast/paper-toast.js';
 import {NotifyOptions} from "../notify";
-import CSS from './notify-component-styles.js';
+import CSS from './notify-component-styles';
 
 const renderCloseButton = (props: NotifyComponent) => props.options.showCloseButton
     ? html`<paper-icon-button 
