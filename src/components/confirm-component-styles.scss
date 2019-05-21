@@ -3,8 +3,6 @@
 :host {
   --paper-dialog-color: var(--uxl-interaction-text-color, var(--primary-text-color));
   --paper-dialog-background-color: var(--uxl-interaction-background-color, var(--primary-background-color));
-  --iron-icon-fill-color: var(--uxl-interaction-icon-color, currentcolor);
-
 }
 
 paper-dialog {
@@ -31,6 +29,7 @@ paper-dialog {
 
   paper-icon-button {
     margin-right: 16px;
+    --iron-icon-fill-color: var(--uxl-interaction-icon-color, currentcolor);
   }
 }
 
