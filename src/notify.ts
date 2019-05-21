@@ -6,6 +6,7 @@ export interface NotifyOptions<T = any> {
     messageArgs?: Object;
     htmlTag?: string;
     htmlUrl?: string;
+    containerId?: string;
     delay?: number;
     showCloseButton?: boolean;
     type?: NotifyType;
@@ -32,6 +33,10 @@ export const notify = async(options: NotifyOptions, localizer?: Localizer): Prom
             await import(options.htmlUrl);
 
         const component: any  = document.body.appendChild(document.createElement(componentName));
+
+        if(options.containerId)
+            component.id = options.containerId;
+
         component.options = options;
         let result = component._updatePromise;
 
