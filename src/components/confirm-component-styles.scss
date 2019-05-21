@@ -8,8 +8,8 @@
 }
 
 paper-dialog {
-  width: 40vw;
-  height: auto;
+  width: var(--uxl-interaction-dialog-width, 40vw);
+  height: var(--uxl-interaction-dialog-height, auto);
   border-radius: 8px;
 }
 
@@ -37,6 +37,7 @@ paper-dialog {
 #content {
   @include layout-vertical;
   @include layout-justified;
+  height: var(--uxl-interaction-content-height, calc(100% - 64px));
   margin: 0;
   padding: 0;
   flex: 1;

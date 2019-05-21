@@ -95,7 +95,9 @@ The following custom properties and mixins are available for styling:
 | `--uxl-interaction-accept-button-color` | Color of the acept button of the dialog | option `styles` |
 | `--uxl-interaction-header-background-color` | The header background color of the dialog | option `styles` |
 | `--uxl-interaction-actions-background-color` | The action background color of the dialog | option `styles` |
-
+| `--uxl-interaction-dialog-width` | The width of the dialog | option `styles` |
+| `--uxl-interaction-dialog-height` | The height of the dialog | option `styles` |
+| `--uxl-interaction-content-height` | The content height of the dialog | option `styles` |
 
 
 
