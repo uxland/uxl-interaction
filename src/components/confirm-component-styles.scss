@@ -50,6 +50,7 @@ paper-dialog-scrollable {
 #actions {
   @include layout-horizontal;
   @include layout-end-justified;
+  background-color: var(--uxl-interaction-actions-background-color, transparent);
   margin: 8px 0;
   padding: 0 8px 0 0;
 }

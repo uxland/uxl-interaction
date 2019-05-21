@@ -60,7 +60,7 @@ export class ConfirmDemo extends LitElement{
     }
     @listen('click', '#button10')
     onClickButton10(e){
-        let options:any = {title: 'A confirm dialog with custom css properties', message: 'Hi! I\'m a Dialog :)', type: "info", acceptLabel: 'Accept', cancelLabel: 'Cancel', showCloseButton: true, styles: {backgroundColor: "#E8EAF6", headerBackgroundColor: "#283593", textColor: "black", closeIconColor: "#fff", acceptColor: "#283593", actionsBackgroundColor: "#E8EAF6"}};
+        let options:any = {title: 'A confirm dialog with custom css properties', message: 'Hi! I\'m a Dialog :)', type: "info", acceptLabel: 'Accept', cancelLabel: 'Cancel', showCloseButton: true, styles: {backgroundColor: "#E8EAF6", headerBackgroundColor: "#CCC000", textColor: "black", closeIconColor: "#fff", acceptColor: "#283593", actionsBackgroundColor: "#fff176"}};
         doConfirm(options);
     }
     @listen('click', '#button11')
@@ -72,7 +72,7 @@ export class ConfirmDemo extends LitElement{
 }
 
 const template = (props: ConfirmDemo) => html`
-    <h1>Confirm demo</h1>
+    <h2>Confirm demo</h2>
     <button id="button1">Show normal Confirm</button>
     <button id="button2">Show normal Confirm with close button</button>
     <button id="button3">Show info type Confirm</button>

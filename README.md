@@ -93,8 +93,8 @@ The following custom properties and mixins are available for styling:
 | `--uxl-interaction-background-color` | The background color of the dialog | `--primary-background-color` |
 | `--uxl-interaction-icon-color` | Fill color of the svg icon that close dialog | `--iron-icon-fill-color` |
 | `--uxl-interaction-accept-button-color` | Color of the acept button of the dialog | option `styles` |
-| `--uxl-interaction-header-background-color` | Fill color of the svg icon that close dialog | option `styles` |
-
+| `--uxl-interaction-header-background-color` | The header background color of the dialog | option `styles` |
+| `--uxl-interaction-actions-background-color` | The action background color of the dialog | option `styles` |
 
 
 

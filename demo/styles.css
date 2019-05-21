@@ -1,8 +1,9 @@
 confirm-component {
-  --uxl-interaction-text-color: orange;
-  --uxl-interaction-background-color: green;
-  --uxl-interaction-icon-color: blue;
-  --uxl-interaction-header-background-color: red;
+/*  --uxl-interaction-text-color: #546e7a;
+  --uxl-interaction-background-color: #eceff1;
+  --uxl-interaction-icon-color: #f4511e;
+  --uxl-interaction-header-background-color: #78909c;*/
+    --uxl-interaction-actions-background-color: #CC0000;
 }
 
 notify-component {
