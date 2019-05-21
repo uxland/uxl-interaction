@@ -15,7 +15,7 @@ export class ConfirmDemo extends LitElement{
 
     @listen('click', '#button1')
     onClickButton1(e){
-        let options = {title: 'A normal confirm dialog', message: 'Hi! I\'m a Dialog :)', acceptLabel: 'Accept', cancelLabel: 'Cancel'};
+        let options = {containerId: 'id1', title: 'A normal confirm dialog', message: 'Hi! I\'m a Dialog :)', acceptLabel: 'Accept', cancelLabel: 'Cancel'};
         doConfirm(options);
     }
     @listen('click', '#button2')

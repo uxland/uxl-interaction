@@ -18,6 +18,7 @@ export interface ConfirmOptions<T = any> {
     withoutActions?: boolean;
     htmlTag?: string;
     htmlUrl?: string;
+    containerId?: string;
     model?: T;
 }
 
@@ -39,6 +40,10 @@ export const doConfirm = async(options: ConfirmOptions, localizer?: Localizer): 
             await import(options.htmlUrl);
 
         const component: any  = document.body.appendChild(document.createElement(componentName));
+
+        if(options.containerId)
+            component.id = options.containerId;
+
         component.options = options;
         let result = component._updatePromise;
 
