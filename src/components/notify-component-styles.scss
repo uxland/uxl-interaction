@@ -1,11 +1,12 @@
 @import "flex-layout-styles";
 
-:host{
+:host {
   @include layout;
   @include layout-center-center;
   flex: 1;
 }
-paper-toast{
+
+paper-toast {
   @include layout-horizontal;
   @include layout-justified;
   @include layout-center;
@@ -13,32 +14,32 @@ paper-toast{
   border-radius: 5px;
 }
 
-paper-toast.fit-bottom{
+paper-toast.fit-bottom {
   border-radius: 0;
 }
 
-paper-toast[type='danger']{
+paper-toast[type='danger'] {
   --paper-toast-background-color: #F44336;
 }
 
-paper-toast[type='warning']{
+paper-toast[type='warning'] {
   --paper-toast-background-color: #FF9800;
 }
 
-paper-toast[type='info']{
+paper-toast[type='info'] {
   --paper-toast-background-color: #2196F3;
 }
 
-paper-toast[type='success']{
+paper-toast[type='success'] {
   --paper-toast-background-color: #4CAF50;
 }
 
-paper-toast[position='top']{
-  position: absolute!important;
-  top: 0!important;
+paper-toast[position='top'] {
+  position: absolute !important;
+  top: 0 !important;
 }
 
-paper-toast[position='center']{
-  position: absolute!important;
+paper-toast[position='center'] {
+  position: absolute !important;
   left: auto !important;
 }

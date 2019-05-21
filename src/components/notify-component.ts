@@ -30,7 +30,8 @@ const renderContent = (props: NotifyComponent) => props.options.message
 
 const renderToast = (props: NotifyComponent) => html`
 <paper-toast
-        id="toast" 
+        id="toast"
+        part="toast"
         class="${(props.options.classifiers || []).map(item => item)}"
         position="${props.options.position}" 
         .duration="${props.options.delay}"

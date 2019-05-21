@@ -1,14 +1,32 @@
-confirm-component {
-    /*  --uxl-interaction-text-color: #546e7a;
-        --uxl-interaction-background-color: #eceff1;
-        --uxl-interaction-icon-color: #f4511e;
-        --uxl-interaction-header-background-color: #78909c;
-        --uxl-interaction-actions-background-color: #CC0000;
-        --uxl-interaction-content-height: 80vh;
-        --uxl-interaction-dialog-width: 90vw;
-        --uxl-interaction-dialog-height: 90vh;*/
+confirm-component#custom-css {
+    --uxl-interaction-text-color: #546e7a;
+    --uxl-interaction-background-color: #eceff1;
+    --uxl-interaction-icon-color: #f4511e;
+    --uxl-interaction-header-background-color: #78909c;
+    --uxl-interaction-actions-background-color: #CC0000;
+    --uxl-interaction-content-height: 80vh;
+    --uxl-interaction-dialog-width: 90vw;
+    --uxl-interaction-dialog-height: 90vh;
+}
+
+confirm-component::part(dialog) {
+}
+
+confirm-component::part(header) {
+}
+
+confirm-component::part(title) {
+}
+
+confirm-component::part(content) {
+}
+
+confirm-component::part(actions) {
 }
 
 notify-component {
+}
 
+notify-component::part(toast) {
+    padding: 500px;
 }

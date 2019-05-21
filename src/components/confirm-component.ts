@@ -68,8 +68,8 @@ export class ConfirmComponent extends LitElement {
         styles.backgroundColor && this.dialog && this.dialog.style.setProperty('--paper-dialog-background-color', styles.backgroundColor);
         styles.closeIconColor && this.closeButton && this.closeButton.style.setProperty('--iron-icon-fill-color', styles.closeIconColor);
         styles.acceptColor && this.acceptButton && this.acceptButton.style.setProperty('color', styles.acceptColor);
-        styles.actionsBackgroundColor && this.actionsContainer && this.actionsContainer.style.setProperty('background-color', styles.actionsBackgroundColor);
         styles.headerBackgroundColor && this.header && this.header.style.setProperty('background-color', styles.headerBackgroundColor);
+        styles.actionsBackgroundColor && this.actionsContainer && this.actionsContainer.style.setProperty('background-color', styles.actionsBackgroundColor);
         styles.width && this.dialog && this.dialog.style.setProperty('width', styles.width);
         styles.height && this.dialog && this.dialog.style.setProperty('height', styles.height);
         styles.height && this.content && this.content.style.setProperty('height', 'calc(100% - 64px)');

@@ -89,17 +89,29 @@ The following custom properties and mixins are available for styling:
 
 | Custom property | Description | Default |
 | --- | --- | --- |
-| `--uxl-interaction-text-color` | Text color of the dialog | `--paper-dialog-color` |
-| `--uxl-interaction-background-color` | The background color of the dialog | `--primary-background-color` |
-| `--uxl-interaction-icon-color` | Fill color of the svg icon that close dialog | `--iron-icon-fill-color` |
-| `--uxl-interaction-accept-button-color` | Color of the acept button of the dialog | option `styles` |
-| `--uxl-interaction-header-background-color` | The header background color of the dialog | option `styles` |
-| `--uxl-interaction-actions-background-color` | The action background color of the dialog | option `styles` |
-| `--uxl-interaction-dialog-width` | The width of the dialog | option `styles` |
-| `--uxl-interaction-dialog-height` | The height of the dialog | option `styles` |
-| `--uxl-interaction-content-height` | The content height of the dialog | option `styles` |
+| `--uxl-interaction-text-color` | Text color of the dialog | script option `styles: {textColor: string}` |
+| `--uxl-interaction-background-color` | The background color of the dialog | script option `styles: {backgroundColor: string}` |
+| `--uxl-interaction-icon-color` | Fill color of the svg icon that close dialog | script option `styles: {closeIconColor: string}` |
+| `--uxl-interaction-accept-button-color` | Color of the acept button of the dialog | script option `styles: {acceptColor: string}` |
+| `--uxl-interaction-header-background-color` | The header background color of the dialog | script option `styles: {headerBackgroundColor: string}` |
+| `--uxl-interaction-actions-background-color` | The action background color of the dialog | script option `styles: {actionsBackgroundColor: string}` |
+| `--uxl-interaction-dialog-width` | The width of the dialog | script option `styles: {width: string}` |
+| `--uxl-interaction-dialog-height` | The height of the dialog | script option `styles: {height: string}` |
+| `--uxl-interaction-content-height` | The content height of the dialog | script option `styles: {height: string}` |
 
+#####By script option 'Styles'
+The following custom properties and mixins are available for styling:
 
+| Name Variable | Description | Default |
+| --- | --- | --- |
+| `textColor` | Text color of the dialog | `--paper-dialog-color` `--primary-text-color`|
+| `backgroundColor` | The background color of the dialog | `--paper-dialog-background-color` `--primary-background-color` |
+| `closeIconColor` | Fill color of the svg icon that close dialog | `--iron-icon-fill-color` `currentcolor` |
+| `acceptColor` | Color of the acept button of the dialog | by script option `type`: 'danger', 'warning', 'info' or 'success' |
+| `headerBackgroundColor` | The header background color of the dialog | transparent |
+| `actionsBackgroundColor` | The action background color of the dialog | transparent |
+| `width` | The width of the dialog | 40vw |
+| `height` | The height or the content of the dialog | auto |
 
 ### Mode `notify()`
 ####Options
@@ -136,6 +148,15 @@ The following styleable part's of the element `notify-component` are available f
 | `<h2 part="title">...` | The title of the notify dialog | `confirm-component::part(title) {...}` |
 | `<div id="content" part="content">...` | The content of the notify dialog | `confirm-component::part(content) {...}` |
 #####Mixins
+
+####Styling
+
+#####Stylable Shadow Parts
+The following styleable part's of the element `notify-component` are available for styling:
+
+| Shadow tree part | Description | Style outside of shadow tree |
+| --- | --- | --- |
+| `<paper-toast part="toast">...` | The notify parent element | `notify-component::part(toast) {...}` |
 
 ###Localizer
 
