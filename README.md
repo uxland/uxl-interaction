@@ -38,6 +38,7 @@ The component provides 2 methods that correspond to 2 modes of interaction with 
 The component can be can customized through passing some **properties** to the methods what we have seen.
 
 ### Mode `doConfirm()` 
+
 ####Options
 
 `title?: string;`: text that displays on dialog header
@@ -71,6 +72,7 @@ The component can be can customized through passing some **properties** to the m
 `htmlUrl?: string;`: if you want to change the content template unless display a simple message, you can pass an htmltag and htmlUrl to display your custom template
 
 `model?: T;`: if you want pass a custom model to display some information for your application, set these property with your custom data. 
+
 ####Styling
 
 #####Stylable Shadow Parts
@@ -99,10 +101,10 @@ The following custom properties and mixins are available for styling:
 | `--uxl-interaction-dialog-height` | The height of the dialog | script option `styles: {height: string}` |
 | `--uxl-interaction-content-height` | The content height of the dialog | script option `styles: {height: string}` |
 
-#####By script option 'Styles'
+#####Script option 'Styles'
 The following custom properties and mixins are available for styling:
 
-| Name Variable | Description | Default |
+| Custom Variable | Description | Default |
 | --- | --- | --- |
 | `textColor` | Text color of the dialog | `--paper-dialog-color` `--primary-text-color`|
 | `backgroundColor` | The background color of the dialog | `--paper-dialog-background-color` `--primary-background-color` |
@@ -137,17 +139,6 @@ The following custom properties and mixins are available for styling:
 `classifiers?: NofifyClassifiers[];`: an array of classes to custom more the snackbar. 
 
 `model?: T;`: if you want pass a custom model to display some information for your application, set these property with your custom data.
-#####Stylable Shadow Parts
-
-The following styleable part's of the element `notify-component` are available for styling:
-
-| Shadow tree part | Description | Style outside of shadow tree |
-| --- | --- | --- |
-| `<paper-toast part="toast">...` | The notify dialog parent element | `notify-component::part(toast) {...}` |
-| `<div id="header" part="header">...` | The header of the notify dialog | `confirm-component::part(header) {...}` |
-| `<h2 part="title">...` | The title of the notify dialog | `confirm-component::part(title) {...}` |
-| `<div id="content" part="content">...` | The content of the notify dialog | `confirm-component::part(content) {...}` |
-#####Mixins
 
 ####Styling
 
@@ -157,6 +148,25 @@ The following styleable part's of the element `notify-component` are available f
 | Shadow tree part | Description | Style outside of shadow tree |
 | --- | --- | --- |
 | `<paper-toast part="toast">...` | The notify parent element | `notify-component::part(toast) {...}` |
+
+#####Mixins
+The following custom properties and mixins are available for styling:
+
+| Custom property | Description | Default |
+| --- | --- | --- |
+| `--uxl-interaction-notify-icon-color` | Fill color of the svg icon that close toast | script option `styles: {iconColor: string}` |
+| `--uxl-interaction-notify-text-color` | Text color of the toast | script option `styles: {textColor: string}` |
+| `--uxl-interaction-notify-background-color` | The background color of the toast | script option `styles: {backgroundColorr: string}` |
+| `--uxl-interaction-notify-padding` | The background color of the toast | script option `styles: {backgroundColorr: string}` |
+
+#####Script option 'Styles'
+The following custom properties and mixins are available for styling:
+
+| Custom Variable | Description | Default |
+| --- | --- | --- |
+| `iconColor` | Fill color of the svg icon that close toast | `--iron-icon-fill-color` `currentcolor` |
+| `textColor` | Text color of the toast | `--paper-toast-color` `#f1f1f1` |
+| `backgroundColor` | The background color of the toast | `--paper-toast-background-color` `#323232` |
 
 ###Localizer
 

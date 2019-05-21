@@ -25,8 +25,12 @@ confirm-component::part(actions) {
 }
 
 notify-component {
+    --uxl-interaction-notify-icon-color: red;
+    --uxl-interaction-notify-text-color: green;
+    --uxl-interaction-notify-background-color: lightgrey;
+    --uxl-interaction-notify-padding: 50px;
 }
 
 notify-component::part(toast) {
-    padding: 500px;
+
 }

@@ -4,13 +4,16 @@
   @include layout;
   @include layout-center-center;
   flex: 1;
+  --iron-icon-fill-color: var(--uxl-interaction-notify-icon-color, currentcolor);
 }
 
 paper-toast {
   @include layout-horizontal;
   @include layout-justified;
   @include layout-center;
-  font-family: Roboto;
+  --paper-toast-color: var(--uxl-interaction-notify-text-color, #f1f1f1);
+  --paper-toast-background-color: var(--uxl-interaction-notify-background-color, #323232);
+  padding: var(--uxl-interaction-notify-padding, #{16px 24px});
   border-radius: 5px;
 }
 
@@ -19,19 +22,19 @@ paper-toast.fit-bottom {
 }
 
 paper-toast[type='danger'] {
-  --paper-toast-background-color: #F44336;
+  --paper-toast-background-color: var(--uxl-interaction-notify-background-color, #F44336);
 }
 
 paper-toast[type='warning'] {
-  --paper-toast-background-color: #FF9800;
+  --paper-toast-background-color: var(--uxl-interaction-notify-background-color, #FF9800);
 }
 
 paper-toast[type='info'] {
-  --paper-toast-background-color: #2196F3;
+  --paper-toast-background-color: var(--uxl-interaction-notify-background-color, #2196F3);
 }
 
 paper-toast[type='success'] {
-  --paper-toast-background-color: #4CAF50;
+  --paper-toast-background-color: var(--uxl-interaction-notify-background-color, #4CAF50);
 }
 
 paper-toast[position='top'] {
