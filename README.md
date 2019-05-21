@@ -41,6 +41,8 @@ The component can be can customized through passing some **properties** to the m
 
 ####Options
 
+`containerId?: string;`: id for the parent container
+
 `title?: string;`: text that displays on dialog header
 
 `titleArgs?: Object;`: arguments for the title
