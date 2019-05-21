@@ -101,7 +101,7 @@ The following custom properties and mixins are available for styling:
 | `--uxl-interaction-dialog-height` | The height of the dialog | script option `styles: {height: string}` |
 | `--uxl-interaction-content-height` | The content height of the dialog | script option `styles: {height: string}` |
 
-#####Script option 'Styles'
+#####Variables from script option 'Styles'
 The following custom properties and mixins are available for styling:
 
 | Custom Variable | Description | Default |
@@ -159,7 +159,7 @@ The following custom properties and mixins are available for styling:
 | `--uxl-interaction-notify-background-color` | The background color of the toast | script option `styles: {backgroundColorr: string}` |
 | `--uxl-interaction-notify-padding` | The background color of the toast | script option `styles: {backgroundColorr: string}` |
 
-#####Script option 'Styles'
+#####Variables from script option 'Styles'
 The following custom properties and mixins are available for styling:
 
 | Custom Variable | Description | Default |
