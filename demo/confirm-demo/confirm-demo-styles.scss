@@ -20,3 +20,29 @@ button:hover{background-color: #1565C0;}
 #button4:hover{background-color: #EF6C00;}
 #button6{background-color: #4CAF50;}
 #button6:hover{background-color: #2E7D32;}
+
+paper-dialog {
+  --uxl-interaction-dialog-height: 50vh !important;
+  --uxl-interaction-dialog-width: 50vw !important;
+}
+
+@mixin rounded-button($height) {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: calc(#{$height}/2);
+  height: $height;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+
+confirm-demo#id1::part(title) {
+  color: orange !important;
+}
+
+*::part(header) {
+  color: green !important;
+  background-color: red !important;
+}

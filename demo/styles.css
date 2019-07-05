@@ -34,3 +34,9 @@ notify-component {
 notify-component::part(toast) {
 
 }
+
+confirm-component#id1::part(title) {
+    color: red !important;
+}
+
+

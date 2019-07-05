@@ -50,7 +50,7 @@ export class NotifyDemo extends LitElement{
     }
     @listen('click', '#button8')
     onClickButton8(e){
-        let options: any = {message: 'A top snackbar', showCloseButton: true, position: 'top', type: "info", delay: 10000};
+        let options: any = {message: 'A top snackbar', showCloseButton: true, position: 'top', type: "info", delay: 10000000000000};
         notify(options);
     }
     @listen('click', '#button9')

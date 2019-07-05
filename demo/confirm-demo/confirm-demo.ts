@@ -72,7 +72,7 @@ export class ConfirmDemo extends LitElement{
 }
 
 const template = (props: ConfirmDemo) => html`
-    <h2>Confirm demo</h2>
+    <h2>Confirm demo</h2>    
     <button id="button1">Show normal Confirm</button>
     <button id="button2">Show normal Confirm with close button</button>
     <button id="button3">Show info type Confirm</button>

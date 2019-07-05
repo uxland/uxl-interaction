@@ -25,6 +25,8 @@ paper-dialog {
   h2 {
     padding: 0 24px;
     font-weight: 400;
+    color: var(--uxl-interaction-text-color, var(--paper-dialog-color));
+    font-size: var(--uxl-interaction-title-font-size);
   }
 
   paper-icon-button {
