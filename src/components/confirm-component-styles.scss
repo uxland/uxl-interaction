@@ -43,6 +43,7 @@ paper-dialog {
 }
 
 paper-dialog-scrollable {
+  @include layout-flex;
   @include layout-vertical;
   padding: 24px;
 }
