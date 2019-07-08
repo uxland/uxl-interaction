@@ -41,7 +41,7 @@ const renderDialog = (props: ConfirmComponent) => html`
         ${renderCloseButton(props)}
     </div>
     <div id="content" part="content">
-        <paper-dialog-scrollable>
+        <paper-dialog-scrollable class="${props.options.classifiers}">
             ${renderContent(props.options, props)} 
         </paper-dialog-scrollable>
         ${renderActions(props)}

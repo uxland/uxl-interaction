@@ -19,6 +19,7 @@ export interface ConfirmOptions<T = any> {
     htmlTag?: string;
     htmlUrl?: string;
     containerId?: string;
+    classifiers?: string;
     model?: T;
 }
 
