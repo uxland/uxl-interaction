@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "target": "es2017",
-    "sourceMap": true,
-    "declaration": false,
+    "target": "esnext",
+    "module": "commonjs",
+    "rootDir": ".",
+    "allowJs": true,
+    "noEmit": true,
     "noImplicitAny": false,
     "removeComments": true,
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
@@ -14,15 +16,9 @@
     "noResolve": false,
     "strict": false,
     "suppressExcessPropertyErrors": true,
-    "lib": ["es2017", "dom"],
-    "baseUrl": ".",
-    "paths": {
-      "tslib": [
-        "node_modules/tslib/tslib.d.ts"
-      ]
-    }
+    "lib": ["es2018", "dom"],
+    "baseUrl": "."
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*", "test/**/*", "demo/**/*"],
+  "exclude": ["node_modules", "es"]
 }

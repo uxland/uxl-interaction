@@ -10,3 +10,5 @@ webpack.config.js
 .travis.yml
 README.md
 src/
+confirmation-specs.txt
+notify-specs.txt
