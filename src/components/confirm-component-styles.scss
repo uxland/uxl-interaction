@@ -1,4 +1,4 @@
-@import "flex-layout-styles";
+@import 'flex-layout-styles';
 
 :host {
   --paper-dialog-color: var(--uxl-interaction-text-color, var(--primary-text-color));
@@ -43,11 +43,12 @@ paper-dialog {
 }
 
 paper-dialog-scrollable {
+  min-height: 1px;
   @include layout-flex;
   @include layout-vertical;
   padding: 24px;
 
-  &.no-padding{
+  &.no-padding {
     padding: 0;
   }
 }
@@ -70,42 +71,43 @@ paper-dialog[fullScreen] {
   height: 100%;
 }
 
-paper-dialog[fullScreen], paper-dialog[fullScreen] #header {
+paper-dialog[fullScreen],
+paper-dialog[fullScreen] #header {
   border-radius: 0;
 }
 
-paper-dialog[type="info"] #header {
-  background-color: var(--uxl-interaction-header-background-color, #2196F3);
+paper-dialog[type='info'] #header {
+  background-color: var(--uxl-interaction-header-background-color, #2196f3);
   color: #fff;
 }
 
-paper-dialog[type="info"] #accept-btn {
-  color: var(--uxl-interaction-accept-button-color, #2196F3);
+paper-dialog[type='info'] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #2196f3);
 }
 
-paper-dialog[type="danger"] #header {
-  background-color: var(--uxl-interaction-header-background-color, #F44336);
+paper-dialog[type='danger'] #header {
+  background-color: var(--uxl-interaction-header-background-color, #f44336);
   color: #fff;
 }
 
-paper-dialog[type="danger"] #accept-btn {
-  color: var(--uxl-interaction-accept-button-color, #F44336);
+paper-dialog[type='danger'] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #f44336);
 }
 
-paper-dialog[type="warning"] #header {
-  background-color: var(--uxl-interaction-header-background-color, #FF9800);
+paper-dialog[type='warning'] #header {
+  background-color: var(--uxl-interaction-header-background-color, #ff9800);
   color: #fff;
 }
 
-paper-dialog[type="warning"] #accept-btn {
-  color: var(--uxl-interaction-accept-button-color, #FF9800);
+paper-dialog[type='warning'] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #ff9800);
 }
 
-paper-dialog[type="success"] #header {
-  background-color: var(--uxl-interaction-header-background-color, #4CAF50);
+paper-dialog[type='success'] #header {
+  background-color: var(--uxl-interaction-header-background-color, #4caf50);
   color: #fff;
 }
 
-paper-dialog[type="success"] #accept-btn {
-  color: var(--uxl-interaction-accept-button-color, #4CAF50);
+paper-dialog[type='success'] #accept-btn {
+  color: var(--uxl-interaction-accept-button-color, #4caf50);
 }
