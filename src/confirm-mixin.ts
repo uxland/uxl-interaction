@@ -1,5 +1,5 @@
-import { dedupingMixin } from '@uxland/uxl-utilities';
-import { property, LitElement } from 'lit-element';
+import { dedupingMixin, MixinFunction } from '@uxland/uxl-utilities';
+import { Constructor, LitElement, property } from 'lit-element';
 export interface ConfirmMixinBase<T = any> extends LitElement {
   model: T;
   close(result: boolean): void;
@@ -9,19 +9,26 @@ export interface ConfirmMixinBase<T = any> extends LitElement {
 export interface IConfirmMixin<T = any, Model = any> extends ConfirmMixinBase<Model> {
   new (): IConfirmMixin<T, Model> & T;
 }
-export const ConfirmMixin = dedupingMixin(parent => {
-  class mixin extends parent {
-    @property()
-    model: any;
-    close(result: boolean) {
-      this.dispatchEvent(new CustomEvent('closed', { detail: result }));
+
+export interface ConfirmMixinConstructor<T = any> extends LitElement {
+  new (...args: any[]): ConfirmMixinBase<T> & LitElement;
+}
+
+export type ConfirmMixinFunction<T = any> = MixinFunction<ConfirmMixinConstructor<T>>;
+
+export const ConfirmMixin: <T = any>() => ConfirmMixinFunction<T> = () =>
+  dedupingMixin(<T>(superClass: Constructor<LitElement>) => {
+    class ConfirmMixinClass extends superClass implements ConfirmMixinBase<T> {
+      @property()
+      model: T;
+      close(result: boolean) {
+        this.dispatchEvent(new CustomEvent('closed', { detail: result }));
+      }
+      canAccept(): Promise<boolean> {
+        return Promise.resolve(true);
+      }
+      accept(): Promise<void> {
+        return Promise.resolve();
+      }
     }
-    canAccept(): Promise<boolean> {
-      return Promise.resolve(true);
-    }
-    accept(): Promise<void> {
-      return Promise.resolve();
-    }
-  }
-  return mixin as IConfirmMixin;
-});
+  });
