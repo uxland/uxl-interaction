@@ -7,3 +7,4 @@ demo/index.js.map
 .idea/
 lib/
 es/
+coverage

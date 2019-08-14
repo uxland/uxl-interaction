@@ -31,4 +31,5 @@ export const ConfirmMixin: <T = any>() => ConfirmMixinFunction<T> = () =>
         return Promise.resolve();
       }
     }
+    return <any>ConfirmMixinClass;
   });
