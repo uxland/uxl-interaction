@@ -6,6 +6,7 @@ export interface ConfirmMixinBase<T = any> extends LitElement {
   canAccept(): Promise<boolean>;
   accept(): Promise<void>;
 }
+
 export interface IConfirmMixin<T = any, Model = any> extends ConfirmMixinBase<Model> {
   new (): IConfirmMixin<T, Model> & T;
 }
