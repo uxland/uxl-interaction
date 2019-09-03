@@ -1,5 +1,7 @@
 import { dedupingMixin, MixinFunction } from '@uxland/uxl-utilities';
-import { Constructor, LitElement, property } from 'lit-element';
+import { Constructor, LitElement } from 'lit-element';
+import { property } from 'lit-element/lib/decorators';
+
 export interface ConfirmMixinBase<T = any> extends LitElement {
   model: T;
   close(result: boolean): void;
