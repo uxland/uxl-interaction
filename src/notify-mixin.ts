@@ -1,19 +1,29 @@
-import { dedupingMixin } from '@uxland/uxl-utilities';
-import { property } from 'lit-element';
-export interface NotifyMixinBase<T = any> {
+import { dedupingMixin, MixinFunction } from '@uxland/uxl-utilities';
+import { Constructor, LitElement } from 'lit-element';
+import { property } from 'lit-element/lib/decorators';
+
+export interface NotifyMixinBase<T = any> extends LitElement {
   model: T;
   close(): void;
 }
-export interface INotifyMixin<T, Model> extends NotifyMixinBase<Model> {
+
+export interface INotifyMixin<T = any, Model = any> extends NotifyMixinBase<Model> {
   new (): INotifyMixin<T, Model> & T;
 }
-export const NotifyMixin = dedupingMixin(parent => {
-  class mixin extends parent {
+
+export interface NotifyMixinConstructor<T = any> extends LitElement {
+  new (...args: any[]): NotifyMixinBase<T> & LitElement;
+}
+
+export type NotifyMixinFunction<T = any> = MixinFunction<NotifyMixinConstructor<T>>;
+
+export const NotifyMixin = dedupingMixin(<T = any>(superClass: Constructor<LitElement>) => {
+  class NotifyMixinClass extends superClass implements NotifyMixinBase<T> {
     @property()
-    model: any;
+    model: T;
     close() {
       this.dispatchEvent(new CustomEvent('closed'));
     }
   }
-  return mixin;
+  return <any>NotifyMixinClass;
 });

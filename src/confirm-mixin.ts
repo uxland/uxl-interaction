@@ -19,7 +19,7 @@ export interface ConfirmMixinConstructor<T = any> extends LitElement {
 
 export type ConfirmMixinFunction<T = any> = MixinFunction<ConfirmMixinConstructor<T>>;
 
-export const ConfirmMixin = dedupingMixin(<T>(superClass: Constructor<LitElement>) => {
+export const ConfirmMixin = dedupingMixin(<T = any>(superClass: Constructor<LitElement>) => {
   class ConfirmMixinClass extends superClass implements ConfirmMixinBase<T> {
     @property()
     model: T;
