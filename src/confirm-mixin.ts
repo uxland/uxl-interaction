@@ -19,20 +19,19 @@ export interface ConfirmMixinConstructor<T = any> extends LitElement {
 
 export type ConfirmMixinFunction<T = any> = MixinFunction<ConfirmMixinConstructor<T>>;
 
-export const ConfirmMixin: <T = any>() => ConfirmMixinFunction<T> = () =>
-  dedupingMixin(<T>(superClass: Constructor<LitElement>) => {
-    class ConfirmMixinClass extends superClass implements ConfirmMixinBase<T> {
-      @property()
-      model: T;
-      close(result: boolean) {
-        this.dispatchEvent(new CustomEvent('closed', { detail: result }));
-      }
-      canAccept(): Promise<boolean> {
-        return Promise.resolve(true);
-      }
-      accept(): Promise<void> {
-        return Promise.resolve();
-      }
+export const ConfirmMixin = dedupingMixin(<T>(superClass: Constructor<LitElement>) => {
+  class ConfirmMixinClass extends superClass implements ConfirmMixinBase<T> {
+    @property()
+    model: T;
+    close(result: boolean) {
+      this.dispatchEvent(new CustomEvent('closed', { detail: result }));
     }
-    return <any>ConfirmMixinClass;
-  });
+    canAccept(): Promise<boolean> {
+      return Promise.resolve(true);
+    }
+    accept(): Promise<void> {
+      return Promise.resolve();
+    }
+  }
+  return <any>ConfirmMixinClass;
+});
