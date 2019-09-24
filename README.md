@@ -85,6 +85,8 @@ The following custom properties and mixins are available for styling:
 | `--uxl-interaction-icon-color`               | Fill color of the svg icon that close dialog | script option `styles: {closeIconColor: string}`         |
 | `--uxl-interaction-accept-button-color`      | Color of the acept button of the dialog      | script option `styles: {acceptColor: string}`            |
 | `--uxl-interaction-header-background-color`  | The header background color of the dialog    | script option `styles: {headerBackgroundColor: string}`  |
+| `--uxl-interaction-title-size`               | The font size of the title    | no script option |
+| `--uxl-interaction-title-color`  | The color of the title    | no script option  |
 | `--uxl-interaction-actions-background-color` | The action background color of the dialog    | script option `styles: {actionsBackgroundColor: string}` |
 | `--uxl-interaction-dialog-width`             | The width of the dialog                      | script option `styles: {width: string}`                  |
 | `--uxl-interaction-dialog-height`            | The height of the dialog                     | script option `styles: {height: string}`                 |
